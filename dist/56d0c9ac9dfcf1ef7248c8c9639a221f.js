@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
+})({5:[function(require,module,exports) {
 var global = (1,eval)("this");
 /*!
  * VERSION: 1.20.3
@@ -8036,6 +8036,10 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 },{}],4:[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _gsap = require("gsap");
 
 class Shadow {
@@ -8079,14 +8083,27 @@ class Shadow {
     [...this.els].slice(1).forEach(el => el.remove());
   }
 }
+exports.default = Shadow;
+},{"gsap":5}],3:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _gsap = require("gsap");
+
+var _Shadow = require("./Shadow");
+
+var _Shadow2 = _interopRequireDefault(_Shadow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Animate {
   constructor() {
     this.shadow = {};
     this.parentSelector = '.js-anim-bg-parent', this.targetSelector = '.js-anim-bg';
-    this.target = [...document.querySelectorAll(this.targetSelector)];
     this.isAnimating = false;
-    this.init(this.target);
   }
   init(target) {
     this._bindEvents(target);
@@ -8117,7 +8134,7 @@ class Animate {
   _createClones() {
     let self = this;
 
-    const shadow = new Shadow({
+    const shadow = new _Shadow2.default({
       parent: self.parent,
       target: self.target
     });
@@ -8150,18 +8167,14 @@ class Animate {
   }
 }
 
+exports.default = Animate;
 const hoverBg = [...document.querySelectorAll('.js-anim-bg-trigger')];
 
 if (hoverBg) {
   const animateBg = new Animate();
   animateBg.init(hoverBg);
 }
-
-const animatedBg = new Animate({
-  parent: '.js-anim-bg-parent',
-  target: '.js-anim-bg'
-});
-},{"gsap":6}],3:[function(require,module,exports) {
+},{"gsap":5,"./Shadow":4}],2:[function(require,module,exports) {
 "use strict";
 
 var _Animate = require("./Animate");
@@ -8176,7 +8189,7 @@ const animatedBg = new _Animate2.default({
 });
 
 // animatedBg.init()
-},{"./Animate":4}],0:[function(require,module,exports) {
+},{"./Animate":3}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -8194,7 +8207,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://' + window.location.hostname + ':38675/');
+  var ws = new WebSocket('ws://' + window.location.hostname + ':44667/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -8295,4 +8308,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id)
   });
 }
-},{}]},{},[0,3])
+},{}]},{},[0,2])
